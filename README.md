@@ -1,2 +1,26 @@
-# weather-android
-Small software project for learning and family use
+# 天気予報
+
+## Why
+両親が毎日NHKの天気予報を確認するために、テレビをつけて操作する手間を減らすために作りました。
+
+## How
+- Android (Kotlin)
+- Open-Meteo API
+- Single screen UI
+
+## Status
+### 2026-02-03
+- リポジトリ作成
+- README初版作成
+- デザイン概案作成
+### 2026-02-04
+- 詳細デザイン作成
+- プロジェクトファイル作成
+- API仕様決定
+### 2026-02-05
+- 天気API通信実装
+- 今日の天気表示
+- 降水確率表示
+### 2026-02-06
+- 1週間の天気表示
+- 第1リリース(APK配布)
