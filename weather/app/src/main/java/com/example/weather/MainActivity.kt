@@ -27,8 +27,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.weather.ui.theme.WeatherTheme
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -75,7 +78,7 @@ val dailyWeather = listOf(
     DailyWeather("2/9", "土", "☀️", "23℃", "17℃", "10%"),
     DailyWeather("2/10", "日", "🌧", "17℃", "12℃", "70%")
 )
-
+val message = "今日も一日頑張ってね"
 
 @Composable
 fun WeatherScreen(modifier: Modifier = Modifier) {
@@ -86,16 +89,12 @@ fun WeatherScreen(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .border(
-                    width = 1.dp,
-                    color = Color.White,
-                    shape = RoundedCornerShape(12.dp)
-                )
                 .padding(24.dp)
         ) {
             Header(formattedDate, testlocation)
             MainWeather()
             RainSection()
+            messageSection(message)
         }
         Card(
             modifier = Modifier
@@ -140,7 +139,7 @@ fun WeatherBackground() {
                 )
             )
     ) {
-        Text("☀️", modifier = Modifier.padding(16.dp))
+        Text("", modifier = Modifier.padding(16.dp))
     }
 }
 @Composable
@@ -163,15 +162,60 @@ fun Header(date: String, city: String) {
 }
 @Composable
 fun MainWeather() {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         Text("22℃", style = MaterialTheme.typography.displayLarge)
         Text("晴れ")
     }
 }
 @Composable
 fun RainSection() {
-    Text("降水確率")
-    Text("🐸🐸🐸")
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(4.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("降水確率")
+        Text("🐸🐸🐸")
+    }
+}
+@Composable
+fun messageSection(message: String,modifier: Modifier = Modifier) {
+    Card (
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        shape = RoundedCornerShape(16.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.White.copy(alpha = 0.85f)
+        ),
+        elevation = CardDefaults.cardElevation(6.dp)
+    ) {
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "今日のメッセージ",
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
+            )
+            Text(
+                text = message,
+                modifier = Modifier.padding(16.dp),
+                style = MaterialTheme.typography.bodyLarge
+                , fontSize = 20.sp
+            )
+        }
+    }
 }
 @Composable
 fun WeekForecast(weekWeather: List<DailyWeather>) {
