@@ -349,8 +349,8 @@ fun WeatherScreen(modifier: Modifier = Modifier) {
     var hourlyList by remember { mutableStateOf<List<HourlyWeather>>(emptyList()) }
     LaunchedEffect(Unit) {
         try {
-            val lat = 33.7081
-            val lon = 130.6642
+            val lat = 33.75885516409007
+            val lon = 130.6236066581781
             val res = WeatherApiClient.api.getCurrentWeather(
                 lat = lat,
                 lon = lon,
